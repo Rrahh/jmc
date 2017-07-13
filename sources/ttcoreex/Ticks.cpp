@@ -44,8 +44,14 @@ void tickon_command(wchar_t*arg)
 /************************/
 /* the #tickset command */
 /************************/
-void tickset_command(wchar_t*arg)
+void tickset_command(wchar_t *arg)
 {
+  if(*arg!='\0') {
+    if(iswdigit(*arg)) {
+      dwTime0=GetTickCount()/1000+(_wtoi(arg)-tick_size);
+    }
+  }
+  else
     dwTime0=GetTickCount()/1000; /* we don't prompt! too many ticksets... */
 }
 

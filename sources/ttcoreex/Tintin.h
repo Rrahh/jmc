@@ -325,7 +325,7 @@ void read_file(wchar_t *arg);
 void parse_sub(wchar_t *arg);
 void tickoff_command(wchar_t* arg);
 void tickon_command(wchar_t* arg);
-void tickset_command(wchar_t* arg);
+void tickset_command(wchar_t *arg);
 void ticksize_command(wchar_t *arg);
 void tick_command(wchar_t* arg);
 void ticksize_command(wchar_t *arg);
