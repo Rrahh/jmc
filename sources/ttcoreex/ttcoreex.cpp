@@ -936,13 +936,13 @@ static void tick_func()
   if(iSecToTick==tick_size || iSecToTick==10) {
       if(bTickStatus) {
           if(iSecToTick==tick_size && !Done ){
-              if ( MUDSocket ) {
+              if ( MUDSocket && mesvar[MSG_TICKER] ) {
                     tintin_puts(rs::rs(1197));
               }
             Done = 1;
           }
         if(iSecToTick==10 && Done ){
-            if ( MUDSocket ) {
+            if ( MUDSocket && mesvar[MSG_TICKER] ) {
                 tintin_puts(rs::rs(1198));
             }
           Done = 0;

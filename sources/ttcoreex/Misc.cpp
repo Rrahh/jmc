@@ -309,9 +309,9 @@ void message_command(wchar_t *arg)
 
   memset(ms, 0, sizeof(ms));
   
-  const wchar_t messages[] = L"aliases actions substitutes antisubstitutes highlights variables groups hotkeys uses logs telnet oob mapper";
-  swscanf(messages, L"%ls %ls %ls %ls %ls %ls %ls %ls %ls %ls %ls %ls %ls",
-	  ms[0],ms[1],ms[2],ms[3],ms[4],ms[5],ms[6], ms[7], ms[8], ms[9], ms[10], ms[11], ms[12]);
+  const wchar_t messages[] = L"aliases actions substitutes antisubstitutes highlights variables groups hotkeys uses logs telnet oob mapper ticker";
+  swscanf(messages, L"%ls %ls %ls %ls %ls %ls %ls %ls %ls %ls %ls %ls %ls %ls",
+	  ms[0],ms[1],ms[2],ms[3],ms[4],ms[5],ms[6], ms[7], ms[8], ms[9], ms[10], ms[11], ms[12], ms[13]);
  
   mestype=0;
   while (!is_abrev(type,ms[mestype]) && mestype< MSG_MAXNUM ) 

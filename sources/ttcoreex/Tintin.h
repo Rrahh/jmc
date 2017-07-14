@@ -79,6 +79,7 @@ using namespace std;
 #define DEFAULT_TELNET_MESS FALSE
 #define DEFAULT_OOB_MESS TRUE
 #define DEFAULT_MAPPER_MESS TRUE
+#define DEFAULT_TICKER_MESS TRUE
 
 enum {
     MSG_ALIAS = 0, 
@@ -94,6 +95,7 @@ enum {
 	MSG_TELNET,
 	MSG_MUD_OOB,
 	MSG_MAPPER,
+	MSG_TICKER,
 
 	MSG_MAXNUM
 };
