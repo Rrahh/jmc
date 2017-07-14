@@ -182,10 +182,6 @@ void send_telnet_command(unsigned char cmd, unsigned char opt)
 	szBuf[len++] = (char)cmd;
 	szBuf[len++] = (char)opt;
 
-	wchar_t buf[200];
-	swprintf(buf, L"#cmd = %d, opt = %d", int(cmd), int(opt));
-	tintin_puts2(buf);
-
 	tls_send(MUDSocket, szBuf, len);
     
 	TelnetMsg(L"send", cmd, opt);
