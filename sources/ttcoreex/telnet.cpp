@@ -180,8 +180,11 @@ void send_telnet_command(unsigned char cmd, unsigned char opt)
 	char szBuf[4], len = 0;
 	szBuf[len++] = (char)TN_IAC;
 	szBuf[len++] = (char)cmd;
-	if (opt)
-		szBuf[len++] = (char)opt;
+	szBuf[len++] = (char)opt;
+
+	wchar_t buf[200];
+	swprintf(buf, L"#cmd = %d, opt = %d", int(cmd), int(opt));
+	tintin_puts2(buf);
 
 	tls_send(MUDSocket, szBuf, len);
     
