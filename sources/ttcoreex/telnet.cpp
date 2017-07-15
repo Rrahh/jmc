@@ -84,7 +84,7 @@ unsigned char strPromptEndSeqBytes[BUFFER_SIZE];
 unsigned char strPromptEndReplBytes[BUFFER_SIZE];
 
 BOOL DLLEXPORT bPromptEndEnabled = FALSE;
-int PromptDropCount;
+int DLLEXPORT PromptDropCount;
 
 unsigned char State;
 unsigned char CurrentSubnegotiation;
@@ -1029,7 +1029,8 @@ void do_telnet_protecol(const char* input, int length, int *used, char* output, 
 								if (!strPromptEndSeqBytes[PromptEndIndex]) { //match!
 									for (char *copy = (char*)strPromptEndReplBytes; *copy; )
 										output[(*generated)++] = *(copy++);
-									output[(*generated)++] = END_OF_PROMPT_MARK;
+									//output[(*generated)++] = END_OF_PROMPT_MARK;
+									output[(*generated)++] = END_OF_PROMPT_DETECTOR;
 									PromptEndIndex = 0;
 								}
 								continue;

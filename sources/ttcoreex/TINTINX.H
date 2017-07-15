@@ -22,6 +22,7 @@
 
 
 #define END_OF_PROMPT_MARK		L'\x01'
+#define END_OF_PROMPT_DETECTOR	L'\x03'
 #define USER_INPUT_MARK			L'\x01'
 #define TINTIN_OUTPUT_MARK		L'\x02'
 #define ESC_SEQUENCE_MARK		L'\x1B'
@@ -67,6 +68,7 @@ extern void DLLEXPORT reopen_bcast_socket();
 extern wchar_t DLLEXPORT strPromptEndSequence[BUFFER_SIZE];
 extern wchar_t DLLEXPORT strPromptEndReplace[BUFFER_SIZE];
 extern BOOL DLLEXPORT bPromptEndEnabled;
+extern int DLLEXPORT PromptDropCount;
 //vls-begin// base dir
 extern wchar_t DLLEXPORT szBASE_DIR[MAX_PATH];
 extern wchar_t DLLEXPORT szSETTINGS_DIR[MAX_PATH];

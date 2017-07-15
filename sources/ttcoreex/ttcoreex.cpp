@@ -125,6 +125,7 @@ wchar_t verbatim_char=DEFAULT_VERBATIM_CHAR;
 int path_length;
 int old_more_coming,more_coming;
 wchar_t last_line[BUFFER_SIZE];
+int lastprompt;
 ofstream hLogFile;
 UINT LogFileCodePage;
 ofstream hOutputLogFile[MAX_OUTPUT];
@@ -1076,15 +1077,29 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
             continue;
         }
 
+        if ( *cpsource == END_OF_PROMPT_DETECTOR) {
+            if (lastprompt < PromptDropCount)
+				lastprompt++;
+			else
+				lastprompt = PromptDropCount;
+            cpsource++;
+            continue;
+        }
+
         if(*cpsource == L'\n' || *cpsource == END_OF_PROMPT_MARK) {
             *cpdest = L'\0';
 			
+			if (lastprompt) {
+				PromptDropCount = PromptDropCount - lastprompt;
+				lastprompt = 0;
+			}
+			else {
 			if ( !bLogAsUserSeen ) {
 				wcscpy(line_to_log, linebuffer);
 			}
             if ( bProcess ) { 
                 do_one_line(linebuffer);
-				if (*cpsource == END_OF_PROMPT_MARK)
+				if (*cpsource == END_OF_PROMPT_MARK || lastprompt)
 					do_multiline();
 			}
 			if ( bLogAsUserSeen ) {
@@ -1108,6 +1123,7 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
 				linebuffer[n] = L'\0';
 				DirectOutputFunction(linebuffer, 0);// out to main window
             }
+			}
 			last_line[0] = L'\0';
 
             cpsource++;
@@ -1120,8 +1136,13 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
     *cpdest=L'\0';
 
 	if (wcscmp(linebuffer, L".")) {
-		wcscpy(last_line , linebuffer);
-		DirectOutputFunction(linebuffer, 0);// out to main window
+		if (lastprompt) {
+			PromptDropCount = PromptDropCount - lastprompt;
+			lastprompt = 0;
+		} else {
+			wcscpy(last_line , linebuffer);
+			DirectOutputFunction(linebuffer, 0);// out to main window
+		}
 		lastRecvd = GetTickCount();
 	} else {
 		last_line[0] = L'\0';
