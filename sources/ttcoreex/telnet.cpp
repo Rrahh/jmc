@@ -425,6 +425,7 @@ void reset_telnet_protocol()
 	SubnegotiationBuffer.clear();
 	reset_oob();
 	PromptEndIndex = 0;
+	PromptDropCount = 0;
 	MudCodePageUsed = MudCodePage;
 }
 
@@ -1028,7 +1029,7 @@ void do_telnet_protecol(const char* input, int length, int *used, char* output, 
 								if (!strPromptEndSeqBytes[PromptEndIndex]) { //match!
 									for (char *copy = (char*)strPromptEndReplBytes; *copy; )
 										output[(*generated)++] = *(copy++);
-									output[(*generated)++] = END_OF_PROMPT_MARK;
+									//output[(*generated)++] = END_OF_PROMPT_MARK;
 									PromptEndIndex = 0;
 								}
 								continue;
