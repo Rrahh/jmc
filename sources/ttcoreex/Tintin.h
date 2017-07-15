@@ -466,6 +466,7 @@ void send_telnet_command(unsigned char command, unsigned char option = 0);
 void send_telnet_subnegotiation(unsigned char option, const wchar_t *output, int length, bool raw_bytes);
 void telnet_command(wchar_t *arg);
 void promptend_command(wchar_t *arg);
+void promptdrop_command(wchar_t *arg);
 
 //Out-of-band (GMCP/MSDP) support
 typedef struct {
@@ -600,7 +601,7 @@ extern void* JMCObjRet[1000];
 // --END
 
 //* en:JMC functions struct. look cmds.h
-const int JMC_CMDS_NUM=133;
+const int JMC_CMDS_NUM=134;
 typedef struct jmc_cmd 
 	{
 	wchar_t*alias;

@@ -84,6 +84,7 @@ unsigned char strPromptEndSeqBytes[BUFFER_SIZE];
 unsigned char strPromptEndReplBytes[BUFFER_SIZE];
 
 BOOL DLLEXPORT bPromptEndEnabled = FALSE;
+int PromptDropCount;
 
 unsigned char State;
 unsigned char CurrentSubnegotiation;
@@ -359,6 +360,22 @@ void promptend_command(wchar_t *arg)
 		}
 	}
 	tintin_puts2(buff);
+}
+
+void promptdrop_command(wchar_t *arg) 
+{
+  if(*arg!='\0') {
+    if(iswdigit(*arg)) {
+      int count = _wtoi(arg);
+	  if (count == 0)
+		  PromptDropCount = 0;
+	  else
+		  PromptDropCount = PromptDropCount + count;
+    } else {
+	}
+  }
+  else
+	PromptDropCount++;
 }
 
 char *pInputData = NULL;
