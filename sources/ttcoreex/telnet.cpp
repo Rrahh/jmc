@@ -1029,15 +1029,8 @@ void do_telnet_protecol(const char* input, int length, int *used, char* output, 
 								if (!strPromptEndSeqBytes[PromptEndIndex]) { //match!
 									for (char *copy = (char*)strPromptEndReplBytes; *copy; )
 										output[(*generated)++] = *(copy++);
-									//output[(*generated)++] = END_OF_PROMPT_MARK;
+									output[(*generated)++] = END_OF_PROMPT_MARK;
 									PromptEndIndex = 0;
-									if (PromptDropCount){
-										PromptDropCount--;
-										while ((output[(*generated)-1] != '\n') && (--*generated));
-										output[*generated] = 0;//erase already written string
-										while ((input[(*used)] != '\n') && (++*used < length));//bypass rest of string
-										continue;
-									}
 								}
 								continue;
 							}
