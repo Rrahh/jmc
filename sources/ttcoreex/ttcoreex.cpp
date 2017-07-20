@@ -125,7 +125,7 @@ wchar_t verbatim_char=DEFAULT_VERBATIM_CHAR;
 int path_length;
 int old_more_coming,more_coming;
 wchar_t last_line[BUFFER_SIZE];
-int lastprompt;
+int last_prompt;
 ofstream hLogFile;
 UINT LogFileCodePage;
 ofstream hOutputLogFile[MAX_OUTPUT];
@@ -1078,10 +1078,10 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
         }
 
         if ( *cpsource == END_OF_PROMPT_DETECTOR) {
-            if (lastprompt < PromptDropCount)
-				lastprompt++;
+            if (last_prompt < PromptDropCount)
+				last_prompt++;
 			else
-				lastprompt = PromptDropCount;
+				last_prompt = PromptDropCount;
             cpsource++;
             continue;
         }
@@ -1089,24 +1089,20 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
         if(*cpsource == L'\n' || *cpsource == END_OF_PROMPT_MARK) {
             *cpdest = L'\0';
 			
-			if (lastprompt) {
-				PromptDropCount = PromptDropCount - lastprompt;
-				lastprompt = 0;
-			}
-			else {
 			if ( !bLogAsUserSeen ) {
 				wcscpy(line_to_log, linebuffer);
 			}
             if ( bProcess ) { 
                 do_one_line(linebuffer);
-				if (*cpsource == END_OF_PROMPT_MARK || lastprompt)
+				if (*cpsource == END_OF_PROMPT_MARK || last_prompt)
 					do_multiline();
 			}
+
 			if ( bLogAsUserSeen ) {
 				wcscpy(line_to_log, linebuffer);
 			}
 
-            if(!bLogPassedLine && (bLogAsUserSeen || FromServer) && wcscmp(line_to_log, L".")) {
+            if(!bLogPassedLine && ((bLogAsUserSeen && !last_prompt) || FromServer) && wcscmp(line_to_log, L".")) {
 				if(hLogFile.is_open()) {
 					log(processLine(line_to_log));
 					log(L"\n");
@@ -1117,6 +1113,11 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
 
             bLogPassedLine = FALSE;
 
+			if (last_prompt) {
+				PromptDropCount = PromptDropCount - last_prompt;
+				last_prompt = 0;
+			}
+			else {
             if( wcscmp(linebuffer, L".") ) {
                 n = wcslen(linebuffer);
 				linebuffer[n++] = *cpsource;
@@ -1136,9 +1137,9 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
     *cpdest=L'\0';
 
 	if (wcscmp(linebuffer, L".")) {
-		if (lastprompt) {
-			PromptDropCount = PromptDropCount - lastprompt;
-			lastprompt = 0;
+		if (last_prompt) {
+			PromptDropCount = PromptDropCount - last_prompt;
+			last_prompt = 0;
 		} else {
 			wcscpy(last_line , linebuffer);
 			DirectOutputFunction(linebuffer, 0);// out to main window
