@@ -425,6 +425,11 @@ void write_command(wchar_t *arg)
             wcscpy(buffer+1, L"message mapper OFF\n");
             set_lines += buffer;
         }
+		if ( !mesvar[MSG_TICKER] ) {
+            buffer[0] = cCommandChar ;
+            wcscpy(buffer+1, L"message ticker OFF\n");
+            set_lines += buffer;
+        }
 
         // save togglesub/echo/multiaction etc states 
         buffer[0] = cCommandChar ;
