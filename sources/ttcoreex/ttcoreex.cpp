@@ -1118,12 +1118,12 @@ static void process_incoming(wchar_t* buffer, BOOL FromServer)
 				last_prompt = 0;
 			}
 			else {
-            if( wcscmp(linebuffer, L".") ) {
-                n = wcslen(linebuffer);
-				linebuffer[n++] = *cpsource;
-				linebuffer[n] = L'\0';
-				DirectOutputFunction(linebuffer, 0);// out to main window
-            }
+	            if( wcscmp(linebuffer, L".") ) {
+		            n = wcslen(linebuffer);
+					linebuffer[n++] = *cpsource;
+					linebuffer[n] = L'\0';
+					DirectOutputFunction(linebuffer, 0);// out to main window
+	            }
 			}
 			last_line[0] = L'\0';
 
