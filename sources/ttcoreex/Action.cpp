@@ -70,7 +70,7 @@ void action_command(wchar_t *arg)
     wchar_t pr[BUFFER_SIZE];
     int priority = 5;
 
-	enum ACTION::ActionType type = ACTION::Action_TEXT;
+	enum ACTION::ActionType type = ACTION::Action_RAW;//Action_TEXT; - for fixing compatibility problem with old versions of jmc
 
     arg=get_arg_in_braces(arg, left,  STOP_SPACES, sizeof(left)/sizeof(wchar_t) - 1);
 	
