@@ -61,6 +61,6 @@
 
 %WinDir%\system32\regsvr32.exe /u /s ttcoreex.dll
 %WinDir%\system\regsvr32.exe /u /s ttcoreex.dll
-%WinDir%\system32\regsvr32.exe ttcoreex.dll
-%WinDir%\system\regsvr32.exe ttcoreex.dll
+%WinDir%\system32\regsvr32.exe %1 ttcoreex.dll
+%WinDir%\system\regsvr32.exe %1 ttcoreex.dll
 
