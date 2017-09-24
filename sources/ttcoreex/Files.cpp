@@ -181,6 +181,7 @@ static void process_file(const wchar_t*FilePath, int Size)
 
 	buffer[Size] = L'\0';
 
+	/*
 	wchar_t *src = buffer;
 	wchar_t *dst = command;
 	wchar_t* cptr = buffer;
@@ -224,7 +225,7 @@ static void process_file(const wchar_t*FilePath, int Size)
 		cptr++;
 		Size--;
     }
-	/*
+	*/
 	wchar_t* cptr = buffer;
     while(Size > 0) {
 		wchar_t *start = cptr;
@@ -236,7 +237,7 @@ static void process_file(const wchar_t*FilePath, int Size)
 		cptr++;
 		Size--;
     }
-	*/
+	
 		
 	delete[] command;
 	delete[] buffer;
