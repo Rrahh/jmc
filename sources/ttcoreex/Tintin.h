@@ -601,7 +601,7 @@ extern void* JMCObjRet[1000];
 // --END
 
 //* en:JMC functions struct. look cmds.h
-const int JMC_CMDS_NUM=134;
+const int JMC_CMDS_NUM=135;
 typedef struct jmc_cmd 
 	{
 	wchar_t*alias;

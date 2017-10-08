@@ -16,6 +16,7 @@ jmc_cmdi jmc_cmds[JMC_CMDS_NUM]={
 		   {L"cr",&cr_command,L"\0"},
 		   {L"echo",&echo_command,L"\0"},
 		   {L"highlight",&parse_high,L"\0"},
+		   {L"unhighlight",&unhighlight_command,L"\0"},
 		   {L"ignore",&ignore_command,L"\0"},
 		   {L"info",&display_info,L"\0"},
 		   {L"killall",&killall_command,L"\0"},
