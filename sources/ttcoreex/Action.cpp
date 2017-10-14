@@ -113,7 +113,7 @@ void action_command(wchar_t *arg)
     while (ind  != ActionList.end() ) {
         // CActionPtr pac1 = *ind;
         ACTION* pac1 = *ind;
-        if ( !pac1->m_bDeleted && !wcscmp(left, pac1->m_strLeft.c_str()) && !wcscmp(right, pac1->m_strRight.c_str())) {
+        if ( !pac1->m_bDeleted && !wcscmp(left, pac1->m_strLeft.c_str())/* && !wcscmp(right, pac1->m_strRight.c_str())*/) {
             bNew = FALSE;
             break;
         }
