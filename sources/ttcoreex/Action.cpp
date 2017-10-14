@@ -113,7 +113,7 @@ void action_command(wchar_t *arg)
     while (ind  != ActionList.end() ) {
         // CActionPtr pac1 = *ind;
         ACTION* pac1 = *ind;
-        if ( !pac1->m_bDeleted && !wcscmp(left, pac1->m_strLeft.c_str())/* && !wcscmp(right, pac1->m_strRight.c_str())*/) {
+        if ( !pac1->m_bDeleted && !wcscmp(left, pac1->m_strLeft.c_str()) && !wcscmp(right, pac1->m_strRight.c_str())) {
             bNew = FALSE;
             break;
         }
@@ -157,16 +157,17 @@ void action_command(wchar_t *arg)
 /*************************/
 void unaction_command(wchar_t* arg)
 {
-    wchar_t left[BUFFER_SIZE] ,result[BUFFER_SIZE];
+    wchar_t left[BUFFER_SIZE], right[BUFFER_SIZE], result[BUFFER_SIZE];
     BOOL bFound = FALSE;
 
     arg=get_arg_in_braces(arg, left, WITH_SPACES, sizeof(left)/sizeof(wchar_t) - 1);
+    arg=get_arg_in_braces(arg, right, WITH_SPACES, sizeof(right)/sizeof(wchar_t) - 1);
 
     ACTION_INDEX ind = ActionList.begin();
     while (ind  != ActionList.end() ) {
         // CActionPtr  pac = *ind;
         ACTION* pac = *ind;
-        if ( !pac->m_bDeleted && match(left, pac->m_strLeft.c_str() ) ){
+        if ( !pac->m_bDeleted && match(left, pac->m_strLeft.c_str() ) && (!*right || match(right, pac->m_strRight.c_str() ))){
             if (mesvar[MSG_ACTION]) {
                 swprintf(result,rs::rs(1006),pac->m_strLeft.c_str() );
                 tintin_puts2(result);

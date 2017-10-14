@@ -1,5 +1,5 @@
 #define MyAppName "Jaba MUD Client"
-#define MyAppVersion "3.7.1.7"
+#define MyAppVersion "3.7.1.9"
 #define MyAppPublisher "muders"
 #define MyAppURL "https://github.com/Rrahh/jmc/releases"
 #define MyAppExeName "jmc.exe"
