@@ -70,10 +70,23 @@ void action_command(wchar_t *arg)
     wchar_t pr[BUFFER_SIZE];
     int priority = 5;
 
-	enum ACTION::ActionType type = ACTION::Action_TEXT;
+	enum CreateType {ACTOVER, ACTADD, ACTNEW} createtype = ACTOVER;
 
     arg=get_arg_in_braces(arg, left,  STOP_SPACES, sizeof(left)/sizeof(wchar_t) - 1);
 	
+	if (is_abrev(left, L"actover")) {
+		createtype = ACTOVER;
+		arg=get_arg_in_braces(arg, left,  STOP_SPACES, sizeof(left)/sizeof(wchar_t) - 1);
+	} else if (is_abrev(left, L"actnew")) {
+		createtype = ACTNEW;
+		arg=get_arg_in_braces(arg, left,  STOP_SPACES, sizeof(left)/sizeof(wchar_t) - 1);
+	} else if (is_abrev(left, L"actadd")) {
+		createtype = ACTADD;
+		arg=get_arg_in_braces(arg, left,  STOP_SPACES, sizeof(left)/sizeof(wchar_t) - 1);
+	}
+
+	enum ACTION::ActionType type = ACTION::Action_TEXT;
+
 	if (is_abrev(left, L"text")) {
 		type = ACTION::Action_TEXT;
 		arg=get_arg_in_braces(arg, left,  STOP_SPACES, sizeof(left)/sizeof(wchar_t) - 1);
@@ -113,7 +126,7 @@ void action_command(wchar_t *arg)
     while (ind  != ActionList.end() ) {
         // CActionPtr pac1 = *ind;
         ACTION* pac1 = *ind;
-        if ( !pac1->m_bDeleted && !wcscmp(left, pac1->m_strLeft.c_str()) && !wcscmp(right, pac1->m_strRight.c_str())) {
+        if ( !pac1->m_bDeleted && !wcscmp(left, pac1->m_strLeft.c_str()) && ((createtype != ACTNEW) || !wcscmp(right, pac1->m_strRight.c_str()))) {
             bNew = FALSE;
             break;
         }
@@ -134,7 +147,12 @@ void action_command(wchar_t *arg)
         return;
     }
 	pac->m_InputType = type;
-    pac->m_strRight = right;
+	if (createtype == ACTADD){
+	    pac->m_strRight += L";";
+	    pac->m_strRight += right;
+	} else {
+	    pac->m_strRight = right;
+	}
     pac->m_nPriority = priority;
     pac->SetGroup(pr);
 

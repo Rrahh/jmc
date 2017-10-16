@@ -1,10 +1,14 @@
 #action [<pattern>]
   show all action containing pattern 
-#action [text|raw|color] <pattern> <reaction> [priority] [group]
-#action [text|raw|color] /<regexp>/[i|m|g] <reaction> [priority] [group]
+#action [actover|actnew|actadd] [text|raw|color] <pattern> <reaction> [priority] [group]
+#action [actover|actnew|actadd] [text|raw|color] /<regexp>/[i|m|g] <reaction> [priority] [group]
   set reaction on pattern with priority in group
+  parameters:
+    actover[default] - overwrite action with new reaction
+    actnew - add new action without deleting old one
+    actadd - append reaction
   available types of testing line:
-    text  - all color esc-sequences are removed
+    text[default]  - all color esc-sequences are removed
     raw   - line remains unchanged
     color - text-color codes are placed at the right-most positions, 
             background colors and colors for empty-substrings are removed
@@ -30,6 +34,8 @@
     m - multiline (pattern will be tested against eash batch of lines devided by GA, EOP, long delay or user input)
     g - global (allows triggering multiple times per entry when multiaction is ON)
 #unaction <pattern>
-  delete action
+  delete all actions containing pattern
+#unaction <pattern> <reaction> 
+  delete action wih specified pattern and reaction
   
 see also: substitute

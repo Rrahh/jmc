@@ -1,0 +1,6 @@
+#promptdrop
+  drop next prompt string (defined by promptend)
+#promptend 0
+  resets counter
+#promptend N
+  drop N next prompt strings
