@@ -96,6 +96,7 @@ extern BOOL DLLEXPORT bRMASupport;
 extern BOOL DLLEXPORT bAppendLogTitle;
 extern BOOL DLLEXPORT bANSILog;
 extern int DLLEXPORT iSecToTick;
+extern int DLLEXPORT nVolume;
 extern BOOL DLLEXPORT bTickStatus;
 extern BOOL DLLEXPORT bConnectBeep;
 extern BOOL DLLEXPORT bAutoReconnect;

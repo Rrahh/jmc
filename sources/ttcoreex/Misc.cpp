@@ -5,6 +5,7 @@
 #include "cmds.h"
 
 #include <time.h>
+#include <sys/stat.h>
 
 #include <windows.h>
 
@@ -829,22 +830,96 @@ void run_command(wchar_t *arg)
 //vls-end//
 
 //vls-begin// #play
+int WavFileChangeVolume (BYTE *buffer, float volume)
+{
+	unsigned int v = volume * 256;
+	int bits = ((WORD *)buffer)[17];//BitsPerSample
+	int datasize = ((DWORD *)buffer)[10];//data bytes count
+	BYTE *data = buffer + 44;
+	if (bits == 8)
+		for (int i = 0; i < datasize; i++)
+			data[i] = (data[i] * v) >> 8;
+	if (bits == 16)
+		for (int i = 0; i < datasize/2; i++)
+			((__int16 *)data)[i] = (((__int16 *)data)[i] * v) >> 8;
+
+	return 0;
+}
+
+BYTE *WavFileBuffer;
+int WavFileBufferSize;
 void play_command(wchar_t *arg)
 {
+    if ( !*arg ) {
+        tintin_puts2(rs::rs(1230));
+        return;
+    }
+
+	/*wchar_t wavfilename[BUFFER_SIZE], volumetext[BUFFER_SIZE];
+
+	arg = get_arg_in_braces(arg, wavfilename, STOP_SPACES, sizeof(wavfilename)/sizeof(wchar_t) - 1);
+	arg = get_arg_in_braces(arg, volumetext, STOP_SPACES, sizeof(volumetext)/sizeof(wchar_t) - 1);
+	int volumelocal = 100;
+	if ( *volumetext )
+		if (iswdigit(*volumetext))
+		{
+			volumelocal = _wtoi(volumetext);
+			if (volumelocal < 0)
+				volumelocal = 0;
+			if (volumelocal > 100)
+				volumelocal = 100;
+		}
+	float volume = volumelocal * iVolume / 10000.0;*/
+	float volume = nVolume / 100.0;
+
 //* en//    char wave[MAX_PATH+2];
 //* en
 //    get_arg_in_braces(arg,wave,STOP_SPACES,sizeof(wave)/sizeof(wchar_t)-1);
 //* en//    get_arg_in_braces(arg,wave,WITH_SPACES,sizeof(wave)/sizeof(wchar_t)-1);
 //* /en
 //* en//    if ( !*wave ) {
-    if ( !*arg ) {
-        tintin_puts2(rs::rs(1230));
-        return;
-    }
-    wchar_t fn[MAX_PATH+2];
+	wchar_t fn[MAX_PATH+2];
 //* en//    MakeAbsolutePath(fn, wave, szBASE_DIR);
-    MakeAbsolutePath(fn, arg, szBASE_DIR);
-    PlaySound(fn, NULL, SND_ASYNC | SND_FILENAME);
+	MakeAbsolutePath(fn, arg, szBASE_DIR);
+
+	if (volume == 1.0)//use old function
+	{
+		PlaySound(fn, NULL, SND_ASYNC | SND_FILENAME);
+	}
+	else
+	{
+		FILE *fin = _wfopen(fn, L"rb");
+		if (!WavFileBuffer)
+			WavFileBuffer = new BYTE[8];
+		if (!fin || (fread (WavFileBuffer, 1, 8, fin) < 8) || (((DWORD *)WavFileBuffer)[0] != 0x46464952/*RIFF*/))
+		{
+			fclose (fin);
+			PlaySound(fn, NULL, SND_ASYNC | SND_FILENAME);
+			return;
+		}
+	
+		DWORD filesize = ((DWORD *)WavFileBuffer)[1] + 8;//size of file according to wav file format
+
+		if (filesize > WavFileBufferSize)
+		{
+			delete[] WavFileBuffer;
+			WavFileBuffer = new BYTE[filesize];
+			WavFileBufferSize = filesize;
+		}
+
+		fseek(fin, 0, SEEK_SET);
+		if ((fread (WavFileBuffer, 1, filesize, fin) < filesize) || (((DWORD *)WavFileBuffer)[4] != 16) || (((WORD *)WavFileBuffer)[10] != 1))//
+		{
+			fclose (fin);
+			PlaySound(fn, NULL, SND_ASYNC | SND_FILENAME);
+			return;
+		}
+
+		fclose (fin);
+
+		WavFileChangeVolume(WavFileBuffer, volume);
+		PlaySound((LPCTSTR)WavFileBuffer, NULL, SND_ASYNC | SND_MEMORY);
+	}
 }
 //vls-end//
 

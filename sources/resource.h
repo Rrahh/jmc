@@ -136,6 +136,7 @@
 #define IDC_SEND                        1083
 #define IDC_SEND_LINE                   1084
 #define IDC_TRIG_DELAY                  1085
+#define IDC_VOLUME                      1086
 #define IDC_UP                          1090
 #define IDC_DOWN                        1091
 #define IDC_COMMONLIB                   1095

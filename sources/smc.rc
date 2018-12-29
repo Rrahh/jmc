@@ -384,7 +384,7 @@ BEGIN
     PUSHBUTTON      "Отмена",IDCANCEL,109,36,50,14
 END
 
-IDD_PARAMS_PAGE DIALOG DISCARDABLE  0, 0, 325, 194
+IDD_PARAMS_PAGE DIALOG DISCARDABLE  0, 0, 325, 214
 STYLE WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -399,61 +399,66 @@ BEGIN
     EDITTEXT        IDC_HISTORY_SIZE,180,29,30,12,ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "Задержка незавершенных строк:",-1,7,49,208,9
     EDITTEXT        IDC_TRIG_DELAY,220,48,29,12,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "Символ команд:",-1,11,88,75,11
-    EDITTEXT        IDC_COMMAND_CHAR,88,86,19,12,ES_AUTOHSCROLL
-    LTEXT           "Разделитель:",-1,11,103,74,11
-    EDITTEXT        IDC_COMMAND_DELIMITER,88,102,19,12,ES_AUTOHSCROLL
+    LTEXT           "Символ команд:",-1,11,106,75,11
+    EDITTEXT        IDC_COMMAND_CHAR,88,104,19,12,ES_AUTOHSCROLL
+    LTEXT           "Разделитель:",-1,11,121,74,11
+    EDITTEXT        IDC_COMMAND_DELIMITER,88,120,19,12,ES_AUTOHSCROLL
     CONTROL         "Авто-очистка",IDC_CLEAR_INPUT,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,226,134,88,10
+                    WS_TABSTOP,226,152,88,10
     CONTROL         "Разбивать при прокрутке",IDC_SPLIT_ONBACKSCROLL,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,122,88,86,18
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,122,106,86,
+                    18
     CONTROL         "Автоподключение",IDC_AUTO_RECONNECT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,219,7,77,10
     CONTROL         "Бип при подключении",IDC_CONNECT_BEEP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,219,18,89,10
     GROUPBOX        "История команд",-1,7,2,208,45
     CONTROL         "Оставлять первое слово",IDC_TOKEN_INPUT,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,143,88,
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,161,88,
                     16
     CONTROL         "Удалять единственное слово",IDC_TOKEN_LAST,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,159,88,
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,177,88,
                     14
     CONTROL         "Курсор в конце",IDC_AUTO_END,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,226,173,87,10
+                    WS_TABSTOP,226,191,87,10
     CONTROL         "Отображать команды",IDC_DISPLAY_COMMANDS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,12,118,94,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,136,94,10
     CONTROL         "Сворачивать в трей",IDC_MINIMIZE_TO_TRAY,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,219,28,83,10
-    GROUPBOX        "Команды",IDC_COMMANDS_FRAME,7,78,105,58
+    GROUPBOX        "Команды",IDC_COMMANDS_FRAME,7,96,105,58
     CONTROL         "Перенос строк",IDC_CHK_LINEWRAP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,109,88,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,127,88,10
     CONTROL         "Прямоугольная область",IDC_CHK_SELECTRECT,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,87,81,18
-    CONTROL         "Подсветка невидимого текста",IDC_CHK_SHOWHIDDEN,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,122,122,88,
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,105,81,
                     18
-    GROUPBOX        "Обработка ввода",-1,220,123,98,62
-    GROUPBOX        "Отображение",-1,117,78,98,107
-    GROUPBOX        "Выделение текста",-1,220,78,96,45
+    CONTROL         "Подсветка невидимого текста",IDC_CHK_SHOWHIDDEN,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,122,140,88,
+                    18
+    GROUPBOX        "Обработка ввода",-1,220,141,98,62
+    GROUPBOX        "Отображение",-1,117,96,98,107
+    GROUPBOX        "Выделение текста",-1,220,96,96,45
     CONTROL         "Удалять ESC-команды",IDC_CHK_REMOVEESC,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,103,83,
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,226,121,83,
                     21
-    GROUPBOX        "Ввод пользователя",-1,7,137,104,50
+    GROUPBOX        "Ввод пользователя",-1,7,155,104,50
     CONTROL         "Не отображать",IDC_INPUT_DONT_DISPLAY,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,147,95,10
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,165,95,10
     CONTROL         "На строке приглашения",IDC_INPUT_ON_PROMPT,"Button",
-                    BS_AUTORADIOBUTTON | BS_MULTILINE,13,158,94,16
+                    BS_AUTORADIOBUTTON | BS_MULTILINE,13,176,94,16
     CONTROL         "На новой строке",IDC_INPUT_ON_NEW_LINE,"Button",
-                    BS_AUTORADIOBUTTON,13,176,91,8
+                    BS_AUTORADIOBUTTON,13,194,91,8
     CONTROL         "Показывать пинг",IDC_DISPLAY_PING,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,143,90,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,161,90,10
     CONTROL         "Метки времени",IDC_DISPLAY_TIMESTAMPS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,158,90,10
-    LTEXT           "Кодировка соединения",-1,7,64,88,8
-    COMBOBOX        IDC_MUD_CODEPAGE,118,62,132,64,CBS_DROPDOWNLIST | 
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,176,90,10
+    LTEXT           "Кодировка соединения",-1,7,82,88,8
+    COMBOBOX        IDC_MUD_CODEPAGE,118,80,132,64,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "Залипание прокрутки",IDC_DISPLAY_STICK_SCROLLBAR,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,172,90,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,190,90,10
+    LTEXT           "Громкость проигрывания звуковых файлов (0...100)",-1,8,
+                    65,208,9
+    EDITTEXT        IDC_VOLUME,220,64,29,12,ES_AUTOHSCROLL | ES_NUMBER
 END
 
 IDD_PROFILE_LIST DIALOG DISCARDABLE  0, 0, 186, 117
@@ -886,7 +891,7 @@ BEGIN
     IDD_PARAMS_PAGE, DIALOG
     BEGIN
         RIGHTMARGIN, 323
-        BOTTOMMARGIN, 191
+        BOTTOMMARGIN, 211
     END
 
     IDD_PROFILE_PAGE, DIALOG
@@ -1200,7 +1205,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,94,68,50,14
 END
 
-IDD_PARAMS_PAGE DIALOG DISCARDABLE  0, 0, 325, 181
+IDD_PARAMS_PAGE DIALOG DISCARDABLE  0, 0, 325, 237
 STYLE WS_CHILD
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -1216,57 +1221,60 @@ BEGIN
     LTEXT           "Uncompleted lines delay (msecs to forcing end-of-line):",
                     IDC_STATIC,7,49,208,9
     EDITTEXT        IDC_TRIG_DELAY,220,48,29,12,ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "Command char:",IDC_STATIC,11,88,75,11
-    EDITTEXT        IDC_COMMAND_CHAR,88,86,19,12,ES_AUTOHSCROLL
-    LTEXT           "Command delimiter:",IDC_STATIC,11,103,74,11
-    EDITTEXT        IDC_COMMAND_DELIMITER,88,102,19,12,ES_AUTOHSCROLL
+    LTEXT           "Command char:",IDC_STATIC,11,115,75,11
+    EDITTEXT        IDC_COMMAND_CHAR,88,113,19,12,ES_AUTOHSCROLL
+    LTEXT           "Command delimiter:",IDC_STATIC,11,130,74,11
+    EDITTEXT        IDC_COMMAND_DELIMITER,88,129,19,12,ES_AUTOHSCROLL
     CONTROL         "Clean input",IDC_CLEAR_INPUT,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,213,122,88,10
+                    WS_TABSTOP,213,149,88,10
     CONTROL         "Split on scroll",IDC_SPLIT_ONBACKSCROLL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,88,77,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,115,77,10
     CONTROL         "Autoreconnect",IDC_AUTO_RECONNECT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,219,7,77,10
     CONTROL         "Beep on connect",IDC_CONNECT_BEEP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,219,18,89,10
     GROUPBOX        "Commands history",IDC_STATIC,7,2,208,45
     CONTROL         "Leave one token",IDC_TOKEN_INPUT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,213,133,88,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,213,160,88,10
     CONTROL         "Clear last token",IDC_TOKEN_LAST,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,213,143,88,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,213,170,88,10
     CONTROL         "Cursor in end",IDC_AUTO_END,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,213,154,87,10
+                    WS_TABSTOP,213,181,87,10
     CONTROL         "Display commands",IDC_DISPLAY_COMMANDS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,12,116,94,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,143,94,10
     CONTROL         "Minimize to system tray",IDC_MINIMIZE_TO_TRAY,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,219,28,87,10
-    GROUPBOX        "Commands",IDC_COMMANDS_FRAME,7,78,105,52
+    GROUPBOX        "Commands",IDC_COMMANDS_FRAME,7,105,105,52
     CONTROL         "Wrap lines",IDC_CHK_LINEWRAP,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,122,101,75,10
+                    WS_TABSTOP,122,128,75,10
     CONTROL         "Rectangular area",IDC_CHK_SELECTRECT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,210,88,101,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,210,115,101,10
     CONTROL         "Show hidden text",IDC_CHK_SHOWHIDDEN,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,115,74,10
-    GROUPBOX        "Input handling",IDC_STATIC,207,113,108,57
-    GROUPBOX        "Display settings",IDC_STATIC,117,78,85,92
-    GROUPBOX        "Selection",IDC_STATIC,207,78,109,33
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,142,74,10
+    GROUPBOX        "Input handling",IDC_STATIC,207,140,108,57
+    GROUPBOX        "Display settings",IDC_STATIC,117,105,85,92
+    GROUPBOX        "Selection",IDC_STATIC,207,105,109,33
     CONTROL         "Remove ESC-sequences",IDC_CHK_REMOVEESC,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,210,96,99,14
-    GROUPBOX        "User's input",IDC_STATIC,7,130,105,41
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,210,123,99,
+                    14
+    GROUPBOX        "User's input",IDC_STATIC,7,157,105,41
     CONTROL         "Don't display",IDC_INPUT_DONT_DISPLAY,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,140,95,10
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,13,167,95,10
     CONTROL         "On prompt line",IDC_INPUT_ON_PROMPT,"Button",
-                    BS_AUTORADIOBUTTON,13,150,95,10
+                    BS_AUTORADIOBUTTON,13,177,95,10
     CONTROL         "On new line",IDC_INPUT_ON_NEW_LINE,"Button",
-                    BS_AUTORADIOBUTTON,13,161,94,8
+                    BS_AUTORADIOBUTTON,13,188,94,8
     CONTROL         "Show ping",IDC_DISPLAY_PING,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,122,129,77,10
+                    WS_TABSTOP,122,156,77,10
     CONTROL         "Line timestamps",IDC_DISPLAY_TIMESTAMPS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,143,77,10
-    LTEXT           "Code page",IDC_STATIC,7,64,88,8
-    COMBOBOX        IDC_MUD_CODEPAGE,118,62,132,64,CBS_DROPDOWNLIST | 
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,170,77,10
+    LTEXT           "Code page",IDC_STATIC,7,91,88,8
+    COMBOBOX        IDC_MUD_CODEPAGE,118,89,132,64,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "Stick scrollbar",IDC_DISPLAY_STICK_SCROLLBAR,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,122,156,77,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,122,183,77,10
+    LTEXT           "Audio file volume (0...100)",IDC_STATIC,8,65,208,9
+    EDITTEXT        IDC_VOLUME,220,64,29,12,ES_AUTOHSCROLL | ES_NUMBER
 END
 
 IDD_SUBST_PAGE DIALOG DISCARDABLE  0, 0, 269, 98
@@ -1863,7 +1871,7 @@ BEGIN
     IDD_PARAMS_PAGE, DIALOG
     BEGIN
         RIGHTMARGIN, 323
-        BOTTOMMARGIN, 178
+        BOTTOMMARGIN, 234
     END
 
     IDD_LOG_PARAMS_PAGE, DIALOG

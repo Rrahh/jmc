@@ -84,6 +84,7 @@ public:
 	BOOL m_bLineWrap;
 	BOOL m_bShowTimestamps;
 	BOOL m_bStickScrollbar;
+	int m_nVolume;
 	BOOL m_bShowHiddenText;
     void RecalcCharSize();
 

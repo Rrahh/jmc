@@ -45,6 +45,7 @@ CCommonParamsPage::CCommonParamsPage() : CPropertyPage(CCommonParamsPage::IDD, I
 	m_bShowPing = TRUE;
 	m_bStickScrollbar = FALSE;
 	m_nUserInputHide = 1;
+	m_nVolume = 100;
 	//}}AFX_DATA_INIT
 }
 
@@ -83,6 +84,8 @@ void CCommonParamsPage::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHK_SHOWHIDDEN, m_bShowHidden);
 	DDX_Check(pDX, IDC_DISPLAY_PING, m_bShowPing);
 	DDX_Check(pDX, IDC_DISPLAY_STICK_SCROLLBAR, m_bStickScrollbar);
+	DDX_Text(pDX, IDC_VOLUME, m_nVolume);
+	DDV_MinMaxUInt(pDX, m_nVolume, 0, 100);
 	//}}AFX_DATA_MAP
 }
 

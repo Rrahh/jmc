@@ -74,6 +74,7 @@ BOOL DLLEXPORT bRMASupport;
 BOOL DLLEXPORT bAppendLogTitle;
 BOOL DLLEXPORT bANSILog;
 int DLLEXPORT iSecToTick;
+int DLLEXPORT nVolume;
 BOOL DLLEXPORT bTickStatus;
 BOOL DLLEXPORT bConnectBeep;
 BOOL DLLEXPORT bAutoReconnect;
@@ -596,8 +597,7 @@ START1:
 		tintin_puts2(L"#Can't disable Nagle's algorithm");
 	}
 
-    sockaddr.sin_family=AF_INET;
-
+	sockaddr.sin_family=AF_INET;
 
 	reset_telnet_protocol();
 	multiline_length = 0;

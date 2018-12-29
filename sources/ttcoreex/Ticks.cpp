@@ -46,7 +46,7 @@ void tickon_command(wchar_t*arg)
 /************************/
 void tickset_command(wchar_t *arg)
 {
-  if(*arg!='\0') {
+  if(*arg!=L'\0') {
     if(iswdigit(*arg)) {
       dwTime0=GetTickCount()/1000+(_wtoi(arg)-tick_size);
     }
@@ -60,7 +60,7 @@ void tickset_command(wchar_t *arg)
 /*************************/
 void ticksize_command(wchar_t *arg)
 {
-  if(*arg!='\0') {
+  if(*arg!=L'\0') {
     if(iswdigit(*arg)) {
       tick_size=_wtoi(arg);
       dwTime0=GetTickCount()/1000;

@@ -157,6 +157,7 @@ extern BOOL bMultiSub;        //multisub
 extern BOOL bColon;           //colon
 extern BOOL bSosExact;        //sos
 extern int iWaitState;        //wait
+extern int iVolume;			  //PlaySound volume
 extern wchar_t cCommentChar;        
 extern const int sTimersV;
 typedef struct {

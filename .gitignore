@@ -17,3 +17,9 @@
 /sources/settings/Default.opt
 /sources/tabwords.txt
 /sources/jmc.ini
+sources/ttcoreex/ttcoreex_p.c
+sources/ttcoreex/ttcoreex_i.c
+sources/ttcoreex/ttcoreex.tlb
+sources/ttcoreex/ttcoreex.plg
+sources/ttcoreex/ttcoreex.h
+sources/ttcoreex/ttcoreex.dsp
